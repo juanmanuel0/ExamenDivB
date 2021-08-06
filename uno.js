@@ -19,22 +19,21 @@ function mostrar()
 	let vacuna;
 	let dosis;
 	let sexo;
-	let menor17;
+	let acumdosis = 0;
 	let acumR = 0;
 	let acumC = 0;
 	let acumA = 0;
 	let EdadC = 0;
     let EdadR = 0;
 	let EdadA = 0;
-	let dosisP = 0;
-	let dosisD = 0;
+	let dosisS = 0;
 	let vacF;
 	let mayorEA;
 	let nomF;
 	let maxEdadF;
 	let promEdadR;
 	let vacmin;
-	let porcentajeD;
+	let porcentajeS;
 	let respuesta;
 
 	do {
@@ -71,19 +70,19 @@ function mostrar()
 			acumA++;
 			EdadA += edad;
 		}
-		if (dosis == "p") {
-			dosisP++;
-		}else{
-			dosisD++;
+		if (dosis == "p" && dosis == "s") {
+			acumdosis++;
+		}
+		if (dosis == "s") {
+			dosisS++;
+		
 		}
 		if(sexo == "f" || edad > maxEdadF){
 			nomF = nombre;
 			vacF = vacuna;
 			maxEdadF = edad;
 		}
-		if(dosis == "d"){
-			dosisD++
-		}
+		
 		
 		respuesta = prompt("quere seguir ingresando?(si/no)")
 		
@@ -92,9 +91,9 @@ function mostrar()
 	promEdadR = EdadR / acumR;
 
 	if (EdadA >= 18 && vacuna == "americana") {
-		mayorEA = EdadA + EdadA / 100;
+		mayorEA = EdadA / acumA;
 	}
-	porcentajeD = dosisD + dosis /100;
+	porcentajeS = dosisS + acumdosis /100;
 
 
 	if(acumR < acumC && acumR > acumA){
@@ -111,9 +110,14 @@ e- Vacuna menos inoculada */
 	document.write("a) el promedio de edad con la rusa es " + promEdadR + "<br>");
 	document.write("b) mujer con mas edad " + maxEdadF + " nombre " + nomF + " vacuna " + vacF + "<br>");
 	document.write("c) porcentaje de edad con americana " + mayorEA +"<br>");
-	document.write("d) el porcentaje con segunda dosis es  " + porcentajeD + "<br>");
+	document.write("d) el porcentaje con segunda dosis es  " + porcentajeS + "<br>");
 	document.write("e) la vacuna menos inoculada es " + vacmin +"<br>");
 
 
 
-}
+}/*a) el promedio de edad con la rusa es 31
+b) mujer con mas edad 66 nombre daniel vacuna china
+c) porcentaje de edad con americana undefined
+d) el porcentaje con segunda dosis es NaN
+e) la vacuna menos inoculada es americana */
+
