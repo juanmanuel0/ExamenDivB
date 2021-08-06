@@ -17,6 +17,7 @@ function mostrar()
     let resultado;
     let edad;
     let cepa;
+    let acumR = 0;
     let acumP = 0;
     let acumN = 0;
     let acumAlf = 0;
@@ -25,19 +26,20 @@ function mostrar()
     let porcentajeP;
     let porcentajeN;
     let flag = 1;
-    let edadE;
+    let edadE = 0;
     let acumArg = 0;
     let Maxcep;
-    let respuesta;
+   
 
-    do{
-        nacionalidad = prompt("ingrese su nacionalidad(extranjero/argentino)max 8");
+  
+    for (let i = 0; i < 9 ; i++) {
+        nacionalidad = prompt("ingrese su nacionalidad(extranjero/argentino");
 		while (nacionalidad != "extranjero" && nacionalidad != "argentino") {
 			nacionalidad = prompt("Error. ingrese un nacionalidad(extranjero/argentino)");
 		}
         resultado = prompt("ingrese la resultado (positivo/negativo)");
 		while (resultado != "positivo" && resultado != "negativo") {
-			resultado = prompt("Error. ingrese la resultado (positivo/negativo)max 8");
+			resultado = prompt("Error. ingrese la resultado (positivo/negativo)");
 		}
        
 		edad = parseInt(prompt("ingrese su edad"));
@@ -48,12 +50,15 @@ function mostrar()
 		while (cepa != "delta" && cepa !="alfa" && cepa != "beta" && cepa != "ninguna") {
 			cepa = prompt("Error. ingrese una cepa(delta, alfa, beta, ninguna)");
 		}
+        if (resultado == "positivo" && resultado == "negativo") {
+            acumR++
+        }
         if (resultado == "positivo") {
             acumP++;
-            porcentajeP = acumP + resultado / 100;
+            porcentajeP = acumP / acumR * 100
         }else if (resultado == "negativo") {
             acumN;
-            porcentajeN = acumN + resultado / 100
+            porcentajeN = acumN / acumR * 100
         }
         if (cepa == "alfa") {
             acumAlf++
@@ -63,17 +68,12 @@ function mostrar()
             acumDel++
         }
         if (flag|| edad > edadE) {
-            edadE += edad
+            edadE = edad
             flag = 0;
         }
-        if (nacionalidad == "argentino" || cepa == "delta") {
-            acumArg++
-    
-        respuesta = prompt("quiere ingresar otro (si/no)")
-    
-		
-      }
-    }while (resultado == "negativo" && respuesta == "si" ) 
+        if (nacionalidad == "argentino" && cepa == "delta") {
+            acumArg++}
+    }
           
       
       if(acumAlf > acumBeta && acumAlf > acumDel){
@@ -85,12 +85,16 @@ function mostrar()
 	}
     document.write("a) el porsentaje de positivos " + porcentajeP + "<br>");
 	document.write("b) porsentaje negativo " + porcentajeN + "<br>");
-	document.write("c) cepa mas contrada" + Maxcep +"<br>");
+	document.write("c) cepa mas contrada " + Maxcep +"<br>");
 	document.write("d) mayo extranjero contagiado  " + edadE + "<br>");
-	document.write("e) la vacuna menos inoculada es " + acumArg +"<br>");
+	document.write("e) la cantidad de personas argentinas contagiadas con la delta es " + acumArg +"<br>");
 
         
     
-}
+}/*a) el porsentaje de positivos Infinity
+b) porsentaje negativo NaN
+c) cepa mas contrada delta
+d) mayo extranjero contagiado 56
+e) la cantidad de personas argentinas contagiadas con la delta es 2*/
 
 
