@@ -14,43 +14,48 @@ function mostrar()
 	let origen;
 	let cantidad;
 	let costo;
+	let cantAS = 0;
 	let acumAS = 0;
 	let acumEU = 0;
 	let acumUSA = 0;
 	let origenmax;
 	let promAS;
 	let totalcost = 0;
-	let presiodescueto;
+	let presioFin;
 
-	for (let i = 0; i < 10.; i++){
+	for (let i = 0; i < 4.; i++){
 		origen = prompt("ingresen el producto (Asia/Europa/USA)");
 		while (origen != "Asia" && origen != "Europa" && origen != "USA") {
 			origen = prompt("Error. ingresen el producto (Asia/Europa/USA)");
 		}
-		cantidad = parseInt(prompt("ingrese la cantidad de productos (no mas que 1000)"));
-		while (!(cantidad > 1)) {
+		cantidad = parseInt(prompt("ingrese la cantidad de productos (100 y 300)"));
+		while (!(cantidad >= 100 && cantidad <= 300)) {
 			cantidad = parseInt(prompt("Error. ingrese la cantidad de productos (no mas que 1000)"));
 		}
-		costo = parseInt(prompt("ingrese un costo entre (100 y 300)"));
+		costo = parseInt(prompt("ingrese un costo entre (1millon y 5millones)"));
 		while (!(costo >= 1000000 && costo <= 5000000 )) {
-			costo = parseInt(prompt("Error. ingrese un numero entre (100 y 300)"));
+			costo = parseInt(prompt("Error. ingrese un numero entre (1millon y 5millones))"));
 		}
+
+		
 		if (origen == "Asia") {
-			acumAS++
+			acumAS += cantidad
+			cantAS++;
 		}else if (origen == "Europa") {
-			acumEU++
+			acumEU += cantidad;
 		}else{
-			acumUSA++
+			acumUSA += cantidad
 		}
 		if (costo >= 1) {
 			totalcost +=costo
 		}
-		if (cantidad > 4000000) {
-			presiodescueto = totalcost * 0.3 /100;
-		}else if (cantidad <= 4000000 && cantidad > 2000000 ) {
-			presiodescueto = totalcost * 0.2 / 100
-		}
+		
 	
+	}
+	if (cantidad > 4000000) {
+		presioFin = totalcost * 0.3 /100;
+	}else if (cantidad <= 4000000 && cantidad > 2000000 ) {
+		presioFin = totalcost * 0.2 / 100
 	}
 	
 	if(acumAS > acumEU && acumAS > acumUSA){
@@ -60,14 +65,21 @@ function mostrar()
 	}else {
       origenmax = "USA";
 	}
-	promAS = acumAS / origen;
+	promAS = acumAS / cantAS;
 
 	document.write("a) el origen con mayor vacunas es  " + origenmax + "<br>");
 	document.write("b)  el promedio de vacunas de Asia es " + promAS + "<br>");
 	document.write("c) el total sin descuento es  " + totalcost+"<br>");
-	document.write("d) el total con descuento es " + presiodescueto + "<br>");
+	document.write("d) el total con descuento es " + presioFin + "<br>");
 
 	
 		
 	
-}
+}/*a) el origen con mayor vacunas es USA
+b) el promedio de vacunas de Asia es NaN
+c) el total sin descuento es 11370357
+d) el total con descuento es undefined 
+a) el origen con mayor vacunas es Asia
+b) el promedio de vacunas de Asia es Infinity
+c) el total sin descuento es 10000000
+d) el total con descuento es undefined*/
