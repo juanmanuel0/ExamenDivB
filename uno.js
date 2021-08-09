@@ -36,7 +36,7 @@ function mostrar()
 	// punto D
 	let contadorDosDosis = 0;
 	let contadorVacunados = 0;
-	let porcentajeDosDosis = 0;
+	let porcentajeDosDosis;
 	// punto E
 	let contadorChina = 0;
 	let menosInoculada;
@@ -91,12 +91,6 @@ function mostrar()
 
 		contadorVacunados++;
 
-
-
-
-
-
-
 		seguir = prompt("Quire ingresar otro pasiente (si/no)")
 	} while (seguir ==  "si");
 	if (contadorChina < contadorRusa && contadorChina < contadorAmericana){
@@ -113,9 +107,9 @@ function mostrar()
 	if (contadorAmericana != 0) {
 		porcentajeAmericanaMayor  =  contadorAmericanaMayor * 100 / contadorAmericana;
 	}
-	if (contadorDosDosis != 0) {
+	 
 		porcentajeDosDosis = contadorDosDosis * 100 / contadorVacunados;
-	}
+	
 
 	if (contadorRusa != 0) {
 		promEdadRusa = acumEdadRusa / contadorRusa;
